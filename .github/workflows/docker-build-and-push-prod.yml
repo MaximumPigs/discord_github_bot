@@ -45,6 +45,6 @@ jobs:
           push: true
           tags: |
             ${{ steps.meta.outputs.tags }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/discord_docker_bot:${{ steps.slug.outputs.GIT_SHORT_SHA7 }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/discord_docker_bot:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/discord_github_bot:${{ steps.slug.outputs.GIT_SHORT_SHA7 }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/discord_github_bot:latest
           labels: ${{ steps.meta.outputs.labels }}
