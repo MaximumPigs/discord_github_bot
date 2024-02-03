@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - 'main'
+    paths-ignore:
+      - '.git*'      
 
 jobs:
   docker-build-gameserver-image:
