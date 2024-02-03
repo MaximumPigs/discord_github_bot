@@ -45,8 +45,6 @@ jobs:
           push: true
           tags: |
             ${{ steps.meta.outputs.tags }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/discord_github_bot:${{ steps.slug.outputs.GIT_SHORT_SHA7 }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/discord_github_bot:amd64
-            ${{ secrets.DOCKERHUB_USERNAME }}/discord_github_bot:arm64            
+            ${{ secrets.DOCKERHUB_USERNAME }}/discord_github_bot:${{ steps.slug.outputs.GIT_SHORT_SHA7 }}      
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64, linux/arm64
