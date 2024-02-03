@@ -9,7 +9,7 @@ jobs:
   docker-build-gameserver-image:
     strategy:
       matrix:
-        architecture: [ arm64v8, amd64 ]
+        architecture: [ arm32v7, amd64 ]
     runs-on: ubuntu-latest
     env:
       GIT_SHA: ${GITHUB_SHA::7}
