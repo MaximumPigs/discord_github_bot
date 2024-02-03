@@ -2,10 +2,10 @@ name: docker-build-and-push-prod-ci
 
 on:
   push:
-    branches:
-      - 'develop'
+    branches-ignore:
+      - 'main'
     paths-ignore:
-      - '.git*/*'
+      - '.github\**'   
 
 jobs:
   docker-build-gameserver-image:
