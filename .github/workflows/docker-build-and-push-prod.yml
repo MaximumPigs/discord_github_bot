@@ -6,7 +6,7 @@ on:
       - 'main'
 
 jobs:
-  docker-build-gameserver-image:
+  docker-build-container-image:
     runs-on: ubuntu-latest
     env:
       GIT_SHA: ${GITHUB_SHA::7}
@@ -46,7 +46,6 @@ jobs:
           tags: |
             ${{ steps.meta.outputs.tags }}
             ${{ secrets.DOCKERHUB_USERNAME }}/discord_github_bot:${{ steps.slug.outputs.GIT_SHORT_SHA7 }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/discord_github_bot:latest-amd64
-            ${{ secrets.DOCKERHUB_USERNAME }}/discord_github_bot:latest-arm64            
+            ${{ secrets.DOCKERHUB_USERNAME }}/discord_github_bot:latest         
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64, linux/arm64

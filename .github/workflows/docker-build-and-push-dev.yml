@@ -6,7 +6,7 @@ on:
       - 'main'
 
 jobs:
-  docker-build-gameserver-image:
+  docker-build-container-image:
     runs-on: ubuntu-latest
     env:
       GIT_SHA: ${GITHUB_SHA::7}
