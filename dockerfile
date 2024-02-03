@@ -1,6 +1,4 @@
-ARG ARCHITECTURE
-
-FROM ${ARCHITECTURE}/python:3
+FROM python:3
 
 LABEL maintainer="MaximumPigs - https://github.com/maximumpigs/discord_github_bot"
 LABEL org.opencontainers.image.authors="MaximumPigs"

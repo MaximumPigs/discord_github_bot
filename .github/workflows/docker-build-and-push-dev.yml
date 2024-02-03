@@ -7,9 +7,6 @@ on:
 
 jobs:
   docker-build-gameserver-image:
-    strategy:
-      matrix:
-        architecture: [ arm32v7, amd64 ]
     runs-on: ubuntu-latest
     env:
       GIT_SHA: ${GITHUB_SHA::7}
@@ -46,9 +43,10 @@ jobs:
         with:
           context: .
           push: true
-          build-args: ARCHITECTURE=${{ matrix.architecture }}
           tags: |
-            ${{ matrix.architecture }}
             ${{ steps.meta.outputs.tags }}
             ${{ secrets.DOCKERHUB_USERNAME }}/discord_github_bot:${{ steps.slug.outputs.GIT_SHORT_SHA7 }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/discord_github_bot:amd64
+            ${{ secrets.DOCKERHUB_USERNAME }}/discord_github_bot:arm64            
           labels: ${{ steps.meta.outputs.labels }}
+          platforms: linux/amd64, linux/arm64
