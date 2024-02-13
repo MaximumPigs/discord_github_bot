@@ -11,7 +11,7 @@ github_token = os.getenv("GITHUB_TOKEN")
 headers = { 'Accept': 'application/vnd.github+json',
             'Authorization':'Bearer ' + github_token}
 
-actions = [ "start", "stop", "store" ]
+actions = [ "start", "stop", "store", "test" ]
 games = [ "palworld", "enshrouded" ]
 
 bot = commands.Bot(command_prefix="!", case_insensitive=True, intents=intents)
@@ -39,17 +39,33 @@ async def get_help(ctx):
     )
 
 @bot.command()
-async def game(ctx, action="null", game="null"):
+async def game(ctx, action="null", game="null", **kwargs):
+
+    print(kwargs)
+
+    options = {
+        'vm_size' : 'default'
+    }
+
+    print(options)
+
+    options.update(kwargs)
+
+    print(options)
+
+    payload_options = ""
+    for option in options:
+        payload_options += ',"' + option.lower() + '":"' + options[option].lower() + '"'
 
     if action != "null" and game != "null":
 
-        if game in games:
+        if game in games and action in actions:
             await ctx.send(
                 f"{ctx.author.mention}\n"
                 f"Running {action.lower()} on {game.capitalize()} server"
             )
 
-            json_data = '{"event_type":"' + action.lower() + '","client_payload":{ "game":"' +game.lower() + '" }}'
+            json_data = '{"event_type":"' + action.lower() + '","client_payload":{ "game":"' +game.lower() + '"' + payload_options + ' }}'
 
             print(github_repo_url)
             print(headers)
