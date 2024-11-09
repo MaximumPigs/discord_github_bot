@@ -1,13 +1,13 @@
-import discord
-import os
-import requests
+from discord import Intents
 from discord.ext import commands
+from os import getenv
+from requests import post
 
-intents = discord.Intents.default()
+intents = Intents.default()
 intents.message_content = True
 
 github_repo_url = 'https://api.github.com/repos/MaximumPigs/docker_deploy/dispatches'
-github_token = os.getenv("GITHUB_TOKEN")
+github_token = getenv("GITHUB_TOKEN")
 headers = { 'Accept': 'application/vnd.github+json',
             'Authorization':'Bearer ' + github_token}
 
@@ -71,7 +71,7 @@ async def game(ctx, action="null", game="null", **kwargs):
             print(headers)
             print(json_data)
 
-            response = requests.post( github_repo_url, headers=headers, data=json_data )
+            response = post( github_repo_url, headers=headers, data=json_data )
             print(response.status_code)
             print(response.reason)
 
@@ -90,4 +90,4 @@ async def game(ctx, action="null", game="null", **kwargs):
             "Type !get_help for more info"
         )
 
-bot.run(os.getenv("DISCORD_TOKEN"))
+bot.run(getenv("DISCORD_TOKEN"))

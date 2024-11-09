@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:alpine
 
 LABEL maintainer="MaximumPigs - https://github.com/maximumpigs/discord_github_bot"
 LABEL org.opencontainers.image.authors="MaximumPigs"
