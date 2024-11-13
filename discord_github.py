@@ -6,8 +6,9 @@ from requests import post
 intents = Intents.default()
 intents.message_content = True
 
-github_repo_url = 'https://api.github.com/repos/MaximumPigs/docker_deploy/dispatches'
+github_repo_url = 'https://api.github.com/repos/MaximumPigs/On_Demand_Game_Servers/dispatches'
 github_token = getenv("GITHUB_TOKEN")
+discord_token = getenv("DISCORD_TOKEN")
 headers = { 'Accept': 'application/vnd.github+json',
             'Authorization':'Bearer ' + github_token}
 
@@ -19,7 +20,6 @@ bot = commands.Bot(command_prefix="!", case_insensitive=True, intents=intents)
 @bot.event
 async def on_ready():
     print(f"Sucessfully logged in as {bot.user}\nType !get_help for help")
-
 
 @bot.command()
 async def get_help(ctx):
@@ -90,4 +90,4 @@ async def game(ctx, action="null", game="null", **kwargs):
             "Type !get_help for more info"
         )
 
-bot.run(getenv("DISCORD_TOKEN"))
+bot.run(discord_token)
